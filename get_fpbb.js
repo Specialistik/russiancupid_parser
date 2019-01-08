@@ -2,7 +2,11 @@ var casper = require('casper').create();
 var fp_bb_value;
 
 function get_fp_bb() {
-    return document.querySelector('input#fpBB').getAttribute('value');
+    //var fp_bb_value = document.querySelectorAll('input#ioBB, input#fpBB');
+    var fp_bb_value = document.querySelector('input#ioBB');
+    return fp_bb_value.call(function (e) {
+        return e.getAttribute('value');
+    });
 }
 
 casper.start('response.html');
@@ -12,5 +16,6 @@ casper.then(function () {
 
 casper.run(function () {
     console.log(fp_bb_value);
+    //console.log(fp_bb_value);
     this.exit();
 });
