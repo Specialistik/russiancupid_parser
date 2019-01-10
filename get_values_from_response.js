@@ -8,7 +8,6 @@ function getValues() {
     });
 }
 
-// Opens casperjs homepage
 casper.start('https://www.russiancupid.com/en/auth/login');
 
 casper.then(function () {
@@ -18,7 +17,6 @@ casper.then(function () {
 casper.run(function () {
     for(var i in wanted_ids) {
         console.log(wanted_ids[i]);
-        console.log('------------');
     }
     this.exit();
 });
