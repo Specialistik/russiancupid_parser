@@ -1,4 +1,8 @@
-var casper = require('casper').create();
+var casper = require('casper').create({
+    verbose: true,
+    logLevel: 'debug'
+});
+var fs = require('fs');
 var evaluationResult;
 
 function performLogin() {
@@ -11,9 +15,18 @@ function performLogin() {
 }
 
 // Opens casperjs homepage
-casper.start('response.html', function(){
+casper.start('https://www.russiancupid.com/en/auth/login', function(){
     this.log('casper started');
-    evaluationResult = this.evaluate(performLogin);
+    fs.write('responses/casper_login_page.html', this.getPageContent(), 'w');
+    this.waitForSelector('.greenShinyButton');
+    //evaluationResult = this.evaluate(performLogin);
+    casper.thenEvaluate(performLogin);
+    casper.on('resource.received', function(resp) {
+        this.echo(JSON.stringify(resp, null, 4));
+        fs.write('casper_response.html', this.getPageContent(), 'w');
+        console.log('current URL is ' + this.getCurrentUrl());
+    });
+    //evaluationResult = this.evaluate(performLogin);
 });
 
 
