@@ -26,10 +26,4 @@ casper.start('https://www.russiancupid.com/en/auth/login', function(){
     });
 });
 
-/*
-casper.then(function() {
-    console.log(document.querySelector('body').innerHTML);
-});
-*/
-
 casper.run();
