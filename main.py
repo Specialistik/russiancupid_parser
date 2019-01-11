@@ -32,10 +32,3 @@ def get_exitcode_stdout_stderr():
     print ioBB
 
 get_exitcode_stdout_stderr()
-#return exitcode, out, err
-#like_output = os.system('casperjs index.js')
-#like_output = subprocess.check_output('casperjs index.js')
-
-#ioBB = beautiful.find("input", {"id": "ioBB"})
-#fpBB = beautiful.find("input", {"id": "ioBB"})
-#print ioBB.value(), fpBB.value()
